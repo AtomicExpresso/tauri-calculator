@@ -3,11 +3,14 @@ import React, {useState} from "react";
 function Calculator(){
   const [count, setCount] = useState([]);
   
-
+  //Adds the button input to the output display
   function calculate(nums, thisOp){
     switch(nums){
       case nums:
         setCount([...count, nums]) 
+      break;
+      default:
+        return
       break;
     }
 
@@ -27,9 +30,13 @@ function Calculator(){
       case '%':
         count.includes("%") ? finalOutput("percent") : null
       break;
+      default:
+        return
+      break;
     }
   }
 
+  //Modifys the output box, for 'Clear' or 'Back space'
   const modifyNum = mod => {
     switch(mod){
       case 'backspace':
@@ -37,6 +44,9 @@ function Calculator(){
       break;
       case 'clear':
         setCount([]) 
+      break;
+      default:
+        return
       break;
     }
   }
@@ -63,6 +73,9 @@ function Calculator(){
       case "percent":
         opindex = count.indexOf("%");
       break;
+      default:
+        return
+      break;
     }
 
     const leftArray = count.slice(0, opindex);
@@ -73,7 +86,7 @@ function Calculator(){
 
     index = count.indexOf(`${op}`);
     count.splice(index, 1, null);
-
+    //Gives you the result
     switch(op){
       case "add":
         result = left + right
@@ -90,9 +103,28 @@ function Calculator(){
       case "percent":
         result = `${left / right * 100}%`
       break;
+      default:
+        return
+      break;
     }
-
+    //displays the result in the output display
     setCount([result])
+  }
+
+  const handleEqualBtn = () => {
+    if(count.includes("+")){
+      finalOutput("add")
+    }else if (count.includes("-")){
+      finalOutput("sub")
+    }else if (count.includes("*")){
+      finalOutput("multi")
+    }else if (count.includes("/")){
+      finalOutput("divide")
+    }else if (count.includes("%")){
+      finalOutput("percent")
+    } else {
+      return;
+    }
   }
 
   return(
@@ -104,7 +136,7 @@ function Calculator(){
           <li><button onClick={() => modifyNum('clear')}>C</button></li>
           <li><button onClick={() => calculate('/', "/")}>/</button></li>
           <li><button onClick={() => calculate('%', "%")}>%</button></li>
-          <li><button onClick={() => modifyNum('backspace')}>Back</button></li>
+          <li><button id='backbtn' onClick={() => modifyNum('backspace')}>Back</button></li>
         </div>
       <div className="calc-btn">
         <div className="calc-col-1">
@@ -123,20 +155,21 @@ function Calculator(){
           <li><button onClick={() => calculate(2)}>2</button></li>
           <li><button onClick={() => calculate(3)}>3</button></li>
         </ul>
-        <ul>
-          <li><button>+/-</button></li>
-          <li><button onClick={() => calculate(0)}>0</button></li>
-          <li><button onClick={() => calculate('.', ".")}>.</button></li>
-        </ul>
         </div>
         <div className="calc-col-2">
         <ul>
           <li><button onClick={() => calculate('*', "*")}>*</button></li>
           <li><button onClick={() => calculate('-', "-")}>-</button></li>
           <li><button onClick={() => calculate('+', "+")}>+</button></li>
-          <li><button onClick={() => finalOutput()}>=</button></li>
         </ul>
       </div>
+      </div>
+      <div className="calc-row-2">
+        <ul>
+          <li><button onClick={() => calculate(0)}>0</button></li>
+          <li><button onClick={() => calculate('.', ".")}>.</button></li>
+          <li><button id='equalbtn' onClick={() => handleEqualBtn()}>=</button></li>
+        </ul>
       </div>
     </div>
   )

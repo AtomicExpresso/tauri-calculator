@@ -6,7 +6,7 @@
     "distDir": "../dist"
   },
   "package": {
-    "productName": "tauri-calculator",
+    "productName": "atomic-calculator",
     "version": "0.0.0"
   },
   "tauri": {
@@ -19,7 +19,7 @@
     },
     "windows": [
       {
-        "title": "tauri-calculator",
+        "title": "atomic-calculator",
         "width": 800,
         "height": 600
       }
@@ -30,11 +30,10 @@
     "bundle": {
       "active": true,
       "targets": "all",
-      "identifier": "com.tauri.dev",
+      "identifier": "atomic-calculator",
       "icon": [
-        "icons/32x32.png",
-        "icons/128x128.png",
-        "icons/128x128@2x.png",
+        "icons/icon.png",
+        "icons/calculator-icon.png",
         "icons/icon.icns",
         "icons/icon.ico"
       ]

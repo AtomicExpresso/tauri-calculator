@@ -87,6 +87,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "atomic-calculator"
+version = "0.0.0"
+dependencies = [
+ "serde",
+ "serde_json",
+ "tauri",
+ "tauri-build",
+]
+
+[[package]]
 name = "autocfg"
 version = "1.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2664,16 +2674,6 @@ dependencies = [
  "tauri-utils",
  "tauri-winres",
  "walkdir",
-]
-
-[[package]]
-name = "tauri-calculator"
-version = "0.0.0"
-dependencies = [
- "serde",
- "serde_json",
- "tauri",
- "tauri-build",
 ]
 
 [[package]]
